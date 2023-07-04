@@ -44,13 +44,11 @@ gem "bcrypt", "~> 3.1.7"
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-<<<<<<<<< Temporary merge branch 1
-gem 'bootsnap', require: false
-=========
+
 gem "bootsnap", require: false
 gem "faraday"
 gem "figaro"
->>>>>>>>> Temporary merge branch 2
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -60,12 +58,8 @@ gem "figaro"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-<<<<<<<<< Temporary merge branch 1
-  gem 'pry'
-=========
   gem "pry"
   gem "net-http"
->>>>>>>>> Temporary merge branch 2
 end
 
 group :development do
