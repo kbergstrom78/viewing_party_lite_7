@@ -74,15 +74,8 @@ group :development do
 end
 
 group :test do
-<<<<<<<<< Temporary merge branch 1
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
-end
-=========
-  gem "rspec-rails"
-  gem "capybara"
-  gem "launchy"
-  gem "simplecov"
 end
