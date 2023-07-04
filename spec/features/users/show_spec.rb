@@ -15,5 +15,12 @@ RSpec.describe 'User Dashboard', type: :feature do
       expect(page).to have_content("#{@user1.name}'s Dashboard")
       expect(page).to_not have_content(@user2.name)
     end
+
+    it 'when I visit the user dashboard I see a button to discover movies' do
+      within '#discover-movies' do
+        expect(page).to have_button('Discover Movies')
+        expect(page).to_not have_content('My Viewing Parties')
+      end
+    end
   end
 end
