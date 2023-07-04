@@ -1,6 +1,6 @@
 ____ Wrote Tests ____ Implemented ____ Reviewed
 
-Neccesary checkmarks:
+Neccessary checkmarks:
 
     [] All Tests are Passing
 
