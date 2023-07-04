@@ -13,5 +13,18 @@ RSpec.describe 'User Registration' do
         expect(page).to have_button('Save')
       end
     end
+
+    it 'can fill out form and submit' do
+      visit '/register'
+
+      within '#registration-form' do
+        fill_in 'Name', with: 'Bob'
+        fill_in 'Email', with: 'gohomenow@hotmail.com'
+
+        click_button 'Save'
+      end
+
+      expect(current_path).to eq(dashboard_path)
+    end
   end
 end
