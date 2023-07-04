@@ -70,7 +70,7 @@ VCR.config do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock
 
-  config.filter_sensitive_data('<API_KEY>') { ENV['API_KEY'] }
+  c.filter_sensitive_data('DONT_SHARE_MY_TMDB_KEY') { ENV['TMDB_KEY'] }
 end
 
 Shoulda::Matchers.configure do |config|
