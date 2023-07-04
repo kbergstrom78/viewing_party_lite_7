@@ -22,5 +22,14 @@ RSpec.describe 'User Dashboard', type: :feature do
         expect(page).to_not have_content('My Viewing Parties')
       end
     end
+
+    it 'when I visit the user dashboard I see a section for viewing parties' do
+      within '#viewing-parties' do
+        expect(page).to have_content('My Viewing Parties')
+        expect(page).to_not have_content('Discover Movies')
+      end
+    end
+
+
   end
 end
