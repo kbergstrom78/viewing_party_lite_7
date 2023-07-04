@@ -2,7 +2,10 @@
 
 Rails.application.routes.draw do
   root 'landing#index'
+
   get '/register', to: 'users#new'
+  post '/register', to: 'users#create'
+  get '/dashboard', to: 'users#show'
 
   resources :user_viewing_parties
   resources :viewing_parties
