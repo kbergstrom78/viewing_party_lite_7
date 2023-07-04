@@ -59,6 +59,8 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "pry"
   gem "net-http"
+  gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :development do
@@ -76,6 +78,9 @@ end
 group :test do
   gem 'capybara'
   gem 'launchy'
-  gem 'rspec-rails'
   gem 'simplecov'
+  gem 'orderly'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'shoulda-matchers'
 end
