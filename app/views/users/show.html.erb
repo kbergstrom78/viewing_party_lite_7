@@ -2,3 +2,6 @@
 <br>
 <h2><%= "#{current_user.name}'s Dashboard" %></h2>
 <br>
+<div id="discover-movies">
+  <%= button_to "Discover Movies", "/users/#{current_user.id}/discover", method: :get %>
+</div>
