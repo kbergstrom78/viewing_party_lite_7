@@ -15,4 +15,4 @@ RSpec.describe ViewingParty, type: :model do
     it { should validate_presence_of(:host_id) }
   end
 end
-  
+
