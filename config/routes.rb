@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'pages#landing'
+  root 'landing#index'
 
   resources :user_viewing_parties
   resources :viewing_parties

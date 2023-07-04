@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'As a registered user', type: :feature do
   before :each do
-    @user1 = User.create!(name: "Danny", email: "danny123@grease.com")
-    @user2 = User.create!(name: "Sandy", email: "sandy246@grease.com")
-    @user3 = User.create!(name: "Rizzo", email: "rizzo678@grease.com")
+    @user1 = User.create!(name: 'Danny', email: 'danny123@grease.com')
+    @user2 = User.create!(name: 'Sandy', email: 'sandy246@grease.com')
+    @user3 = User.create!(name: 'Rizzo', email: 'rizzo678@grease.com')
   end
 
   it 'has a landing page' do
