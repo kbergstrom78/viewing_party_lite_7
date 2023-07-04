@@ -1,0 +1,2 @@
+class ViewingPartiesController < ApplicationController
+end
