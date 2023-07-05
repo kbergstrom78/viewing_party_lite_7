@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :user_viewing_parties
   resources :viewing_parties
-  resources :users
+  resources :users do
+    resources :discover, only: [:index], controller: 'users/discover'
+  end
 end

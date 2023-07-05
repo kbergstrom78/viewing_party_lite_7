@@ -30,6 +30,17 @@ RSpec.describe 'User Dashboard', type: :feature do
       end
     end
 
+    it 'when I visit the user dashboard and click the Discover Movies button' do
+      within '#discover-movies' do
+        click_button('Discover Movies')
+        save_and_open_page
+      end
 
+      expect(current_path).to eq(user_discover_index_path(@user1.id))
+      expect(current_path).to_not eq(user_discover_index_path(@user2.id))
+      expect(page).to have_link('Back to Landing Page')
+      expect(page).to have_content('Viewing Party')
+      expect(page).to have_content('Discover Movies')
+    end
   end
 end
