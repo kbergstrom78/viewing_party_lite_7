@@ -30,6 +30,13 @@ RSpec.describe 'User Dashboard', type: :feature do
       end
     end
 
+    it 'when I visit the user dashboard and click the Discover Movies button' do
+      within '#discover-movies' do
+        click_button('Discover Movies')
+      end
 
+      expect(current_path).to eq(user_discover_index_path(@user1.id))
+      expect(current_path).to_not eq(user_discover_index_path(@user2.id))
+    end
   end
 end
