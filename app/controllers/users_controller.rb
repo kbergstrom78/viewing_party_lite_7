@@ -7,15 +7,14 @@ class UsersController < ApplicationController
 
   def create
     @new_user = User.new(user_params)
-      if @new_user.save
-        session[:user_id] = @new_user.id
-        redirect_to dashboard_path
-      else
-        flash[:notice] = "Try again! All fields must be complete and email unique."
-        redirect_to register_path
-      end
+    if @new_user.save
+      session[:user_id] = @new_user.id
+      redirect_to dashboard_path
+    else
+      flash.notice = 'Try again! All fields must be complete and email unique.'
+      redirect_to '/register'
+    end
   end
-
 
   private
 

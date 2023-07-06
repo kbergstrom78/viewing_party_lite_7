@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :viewing_parties
   resources :users do
     resources :discover, only: [:index], controller: 'users/discover'
+    resources :movie, only: [:index], controller: 'users/movie'
   end
 end
