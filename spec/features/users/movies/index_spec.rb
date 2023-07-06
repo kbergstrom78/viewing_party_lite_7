@@ -14,7 +14,7 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_content("Cinema Paradiso")
+        expect(page).to have_content("Seven Samurai")
       end
 
       within '#movie-15' do
@@ -42,7 +42,7 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_link('Cinema Paradiso')
+        expect(page).to have_link('Seven Samurai')
       end
 
       within '#movie-15' do
