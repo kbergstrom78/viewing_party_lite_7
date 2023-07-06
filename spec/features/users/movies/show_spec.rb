@@ -16,7 +16,14 @@ RSpec.describe 'Movie Show Page' do
         expect(page).to have_content('Crime')
         expect(page).to have_content('Drama')
       end
+    end
 
+    it 'I see the top ten cast members for the movie', :vcr do
+      within '#movie-details' do
+        expect(page).to have_content('Marlon Brando as Don Vito Corleone')
+        expect(page).to have_content('John Marley as Jack Woltz')
+        expect(page).to_not have_content('Richard Conte as Barzini')
+      end
     end
   end
 end
