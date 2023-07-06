@@ -32,12 +32,13 @@ RSpec.describe MovieService do
       expect(search[:results].first[:title]).to eq('The Godfather')
     end
 
-    it 'can get cast and charachters for a movie', :vcr do
+    it 'can get cast and characters for a movie', :vcr do
       credits = MovieService.get_cast(238)
 
       expect(credits).to be_a Hash
-      expect(credits)
-
+      expect(credits[:cast]).to be_an Array
+      expect(credits[:cast].first[:name]).to be_a String
+      expect(credits[:cast].first[:character]).to be_a String
     end
   end
 end
