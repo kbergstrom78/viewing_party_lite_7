@@ -12,3 +12,9 @@
       </ul>
     <% end %>
   <p>Summary: <%= @movie.overview %></p>
+  <p>Cast: <% @cast.each do |c| %></p>
+    <ul>
+        <li><%= c %></li>
+    </ul>
+    <% end %>
+</div>
