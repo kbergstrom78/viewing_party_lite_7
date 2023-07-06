@@ -11,8 +11,8 @@ class UsersController < ApplicationController
         session[:user_id] = @new_user.id
         redirect_to dashboard_path
       else
-        flash.notice = "Try again! All fields must be complete and email unique."
-        redirect_to '/register'
+        flash[:notice] = "Try again! All fields must be complete and email unique."
+        redirect_to register_path
       end
   end
 
