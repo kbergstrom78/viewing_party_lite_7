@@ -68,12 +68,18 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  c.hook_into :webmock
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  config.hook_into :webmock
 
-  c.filter_sensitive_data('DONT_SHARE_MY_TMDB_KEY') { ENV['TMDB_KEY'] }
+  config.filter_sensitive_data('DONT_SHARE_MY_TMDB_KEY') { ENV['TMDB_KEY'] }
+  config.default_cassette_options = {
+    serialize_with: :json,
+    re_record_interval: 7.days
+  }
+  config.configure_rspec_metadata!
 end
+
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
