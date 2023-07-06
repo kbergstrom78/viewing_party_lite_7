@@ -16,4 +16,12 @@ class MovieFacade
       Movie.new(movie_data)
     end
   end
+
+  def self.top_ten_cast(id)
+    cast_chars = []
+    MovieService.get_cast(id)[:cast][0..9].map do |cast_data|
+      cast_chars << "#{cast_data[:name]} as #{cast_data[:character]}"
+    end
+    cast_chars
+  end
 end
