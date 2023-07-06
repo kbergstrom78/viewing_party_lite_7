@@ -35,7 +35,6 @@ RSpec.describe 'User Dashboard', type: :feature do
     it 'when I visit the user dashboard and click the Discover Movies button' do
       within '#discover-movies' do
         click_button('Discover Movies')
-        save_and_open_page
       end
 
       expect(current_path).to eq(user_discover_index_path(@user1.id))

@@ -1,4 +1,4 @@
-require 'rails_helper'  
+require 'rails_helper'
 
 RSpec.describe MovieFacade do
   describe 'creates movie facade' do
@@ -22,6 +22,16 @@ RSpec.describe MovieFacade do
       expect(search.first).to be_a Movie
       expect(search.first.title).to eq('The Godfather')
       expect(search.first.vote_average).to eq(8.709)
+    end
+
+    it 'creates a list of cast members for a movie', :vcr do
+      cast = MovieFacade.top_ten_cast(238)
+      expect(cast).to be_an Array
+    end
+
+    it 'creates a list of reviews for a movie', :vcr do
+      reviews = MovieFacade.reviews(238)
+      expect(reviews).to be_an Array
     end
   end
 end

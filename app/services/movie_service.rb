@@ -17,4 +17,12 @@ class MovieService
       f.params['api_key'] = ENV['TMDB_API_KEY']
     end
   end
+
+  def self.get_cast(id)
+    JSON.parse(conn.get("movie/#{id}/credits").body, symbolize_names: true)
+  end
+
+  def self.get_reviews(id)
+    JSON.parse(conn.get("movie/#{id}/reviews").body, symbolize_names: true)
+  end
 end

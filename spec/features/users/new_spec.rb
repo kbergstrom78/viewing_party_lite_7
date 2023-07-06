@@ -48,7 +48,7 @@ RSpec.describe 'User Registration' do
 
         click_button 'Save'
       end
-      save_and_open_page
+      
       expect(page).to have_content('Try again! All fields must be complete and email unique.')
     end
   end
