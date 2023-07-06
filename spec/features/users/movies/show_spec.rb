@@ -25,5 +25,12 @@ RSpec.describe 'Movie Show Page' do
         expect(page).to_not have_content('Richard Conte as Barzini')
       end
     end
+
+    it 'displays total count of reviews', :vcr do
+      within '#movie-reviews' do
+      save_and_open_page
+        expect(page).to have_content(5)
+      end
+    end
   end
 end
