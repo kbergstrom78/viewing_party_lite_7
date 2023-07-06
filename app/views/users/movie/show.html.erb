@@ -2,6 +2,14 @@
 <br>
 <h2>Movie Details Page</h2>
 <br>
+<div id='create-party'>
+  <%= link_to 'Create Viewing Party', new_user_movie_viewing_party_path(@user.id, @movie.id), method: :get %>
+</div>
+<br>
+<div id='discover'>
+  <%= button_to 'Back to Discover', user_discover_index_path(@user.id), method: :get %>
+</div>
+<br>
 <div id='movie-details'>
   <h3><%= @movie.title %></h3>
   <p>Vote: <%= @movie.vote_average %></p>
