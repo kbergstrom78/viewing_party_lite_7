@@ -28,5 +28,10 @@ RSpec.describe MovieFacade do
       cast = MovieFacade.top_ten_cast(238)
       expect(cast).to be_an Array
     end
+
+    it 'creates a list of reviews for a movie', :vcr do
+      reviews = MovieFacade.reviews(238)
+      expect(reviews).to be_an Array
+    end
   end
 end
