@@ -18,4 +18,18 @@
     <%= form.submit %>
   <% end %>
 
+ <div id='party-friends'>
+  <h3>Invite Friends to Party</h3>
+  <%= form_with url: "/users/viewing_parties", method: :post do |form| %>
+    <% @users.each do |user| %>
+      <div>
+        <%= form.check_box :user_ids, { multiple: true }, user.id, nil %>
+        <%= form.label :user_ids, user.email %>
+      </div>
+    <% end %>
+    <%= form.submit %>
+  <% end %> 
+</div>
+
+
 
