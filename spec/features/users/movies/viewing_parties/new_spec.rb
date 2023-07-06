@@ -15,8 +15,13 @@ RSpec.describe 'Viewing Party New Page' do
         expect(page).to have_content('Duration of Party')
         expect(page).to have_content('Date')
         expect(page).to have_content('Start Time')
-        expect(page).to have_field('checkbox_id', type: 'checkbox')
-        expect(page).to have_button('Create Party')
+      end
+    end
+
+    it 'has a form to add users to party', :vcr do
+      within '#party-friends' do
+        expect(page).to have_field('user_ids[]', type: 'checkbox') 
+        expect(page).to have_button('commit', value: 'Create Party') 
       end
     end
   end
