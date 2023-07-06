@@ -1,0 +1,14 @@
+<h1>Viewing Party</h1>
+<br>
+<h2>Movie Details Page</h2>
+<br>
+<div id='movie-details'>
+  <h3><%= @movie.title %></h3>
+  <p>Vote: <%= @movie.vote_average %></p>
+  <p>Runtime: <%= @movie.runtime %></p>
+    <p>Genres: <% @movie.genre.each do |g| %></p>
+      <ul>
+          <li><%= g[:name] %></li>
+      </ul>
+    <% end %>
+  <p>Summary: <%= @movie.overview %></p>
