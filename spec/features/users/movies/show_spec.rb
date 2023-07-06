@@ -28,8 +28,16 @@ RSpec.describe 'Movie Show Page' do
 
     it 'displays total count of reviews', :vcr do
       within '#movie-reviews' do
-      save_and_open_page
         expect(page).to have_content(5)
+      end
+    end
+
+    it 'displays each review with author and content', :vcr do
+      within '#movie-reviews' do
+        expect(page).to have_content('futuretv')
+        expect(page).to have_content('The Godfather is a film considered by most to be one of the greatest ever made.')
+        expect(page).to have_content('Suresh Chidurala')
+        expect(page).to have_content('Great Movie **Ever**')
       end
     end
   end
