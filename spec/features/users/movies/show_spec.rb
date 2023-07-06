@@ -40,5 +40,21 @@ RSpec.describe 'Movie Show Page' do
         expect(page).to have_content('Great Movie **Ever**')
       end
     end
+
+    it 'has a button to create a viewing party', :vcr do
+      within '#create-party' do
+        expect(page).to have_link('Create Viewing Party')
+        click_link 'Create Viewing Party'
+      end
+      expect(current_path).to eq(new_user_movie_viewing_party_path(@user1, 238))
+    end
+
+    it 'has a button to return to the Discover Page', :vcr do
+      within '#discover' do
+        expect(page).to have_button('Back to Discover')
+        click_button 'Back to Discover'
+      end
+      expect(current_path).to eq(user_discover_index_path(@user1))
+    end
   end
 end
