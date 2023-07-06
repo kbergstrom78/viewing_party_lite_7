@@ -1,3 +1,21 @@
 <h1>Viewing Party</h1>
 <br>
-<h2>New Viewing Party Page</h2>
+<h2>Create a Movie Party</h2>
+<br>
+<h3>Movie Title: <%= @movie.title %></h3>
+
+<div id='party-details'>
+  <%= form_with url: "/users/viewing_parties", method: :post do |form| %>
+    <%= form.label :duration, 'Duration of Party:' %>
+    <%= form.text_field :duration %>
+    <br>
+    <%= form.label :date, 'Date:' %>
+    <%= form.text_field :date %>
+    <br>
+    <%= form.label :time, 'Start Time:' %>
+    <%= form.text_field :time %>
+    <br>
+    <%= form.submit %>
+  <% end %>
+
+
