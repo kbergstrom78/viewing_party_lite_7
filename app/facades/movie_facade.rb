@@ -24,4 +24,12 @@ class MovieFacade
     end
     cast_chars
   end
+
+  def self.reviews(id)
+    review_data = []
+    MovieService.get_reviews(id)[:results].map do |review|
+      review_data << "#{review[:author]}'s review: #{review[:content]}"
+    end
+    review_data
+  end
 end
