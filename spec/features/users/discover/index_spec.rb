@@ -11,7 +11,6 @@ RSpec.describe 'Discover Movies Page' do
     end
 
     it 'I see a button to discover top rated movies', :vcr do
-
       expect(page).to have_content('Discover Movies Page')
       within '#top-rated' do
         expect(page).to have_button('Discover Top Rated Movies')
@@ -23,7 +22,6 @@ RSpec.describe 'Discover Movies Page' do
     end
 
     it 'I see a search field to search for movies by title, can click search button and see new movie', :vcr do
-
       within '#search-movies' do
         fill_in 'Enter Movie Title', with: 'The Godfather'
         click_button 'Search'

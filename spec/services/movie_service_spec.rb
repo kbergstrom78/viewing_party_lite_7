@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MovieService do
@@ -9,7 +11,6 @@ RSpec.describe MovieService do
       expect(movies).to have_key :original_title
       expect(movies[:original_title]).to be_a String
       expect(movies[:original_title]).to eq('The Godfather')
-
     end
 
     it 'can get top rated movies', :vcr do
