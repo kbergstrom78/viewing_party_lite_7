@@ -20,9 +20,12 @@ RSpec.describe 'Viewing Party New Page' do
 
     it 'has a form to add users to party', :vcr do
       within '#party-friends' do
-        expect(page).to have_field('user_ids[]', type: 'checkbox') 
-        expect(page).to have_button('commit', value: 'Create Party') 
+        expect(page).to have_field('user_ids[]', type: 'checkbox')
       end
+      expect(page).to have_button('Create Party')
+      click_button 'Create Party'
+      expect(current_path).to eq(dashboard_path(@user1))
+
     end
   end
 end

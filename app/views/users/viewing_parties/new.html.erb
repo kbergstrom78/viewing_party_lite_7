@@ -5,7 +5,7 @@
 <h3>Movie Title: <%= @movie.title %></h3>
 
 <div id='party-details'>
-  <%= form_with url: "/users/viewing_parties", method: :post do |form| %>
+  <%= form_with url: user_movie_viewing_parties_path(@user, @movie), method: :post, local: true do |form| %>
     <%= form.label :duration, 'Duration of Party:' %>
     <%= form.text_field :duration %>
     <br>
@@ -15,20 +15,19 @@
     <%= form.label :time, 'Start Time:' %>
     <%= form.text_field :time %>
     <br>
-    <%= form.submit %>
-  <% end %>
 
- <div id='party-friends'>
-  <h3>Invite Friends to Party</h3>
-  <%= form_with url: "/users/viewing_parties", method: :post do |form| %>
-    <% @users.each do |user| %>
-      <div>
-        <%= form.check_box :user_ids, { multiple: true }, user.id, nil %>
-        <%= form.label :user_ids, user.email %>
-      </div>
-    <% end %>
-    <%= form.submit %>
-  <% end %> 
+    <div id='party-friends'>
+      <h3>Invite Friends to Party</h3>
+      <% @users.each do |user| %>
+        <div>
+          <%= form.check_box :user_ids, { multiple: true }, user.id, nil %>
+          <%= form.label :user_ids, user.email %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form.submit 'Create Party' %>
+  <% end %>
 </div>
 
 
