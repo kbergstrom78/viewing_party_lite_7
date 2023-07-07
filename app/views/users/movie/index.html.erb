@@ -10,7 +10,7 @@
     <% @top_rated.each.with_index(1) do |movie, i| %>
 
   <div id="movie-<%= i %>">
-    <p><%= link_to "#{movie.title}", user_movie_index_path(@user.id, movie.id) %></p>
+    <p><%= link_to "#{movie.title}", user_movie_path(@user.id, movie.id) %></p>
     <p><%= "#{movie.vote_average}" %></p>
   </div>
   <br>
