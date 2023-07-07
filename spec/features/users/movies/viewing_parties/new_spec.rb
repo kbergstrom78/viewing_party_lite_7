@@ -22,10 +22,10 @@ RSpec.describe 'Viewing Party New Page' do
       within '#party-friends' do
         expect(page).to have_field('user_ids[]', type: 'checkbox')
       end
+
       expect(page).to have_button('Create Party')
       click_button 'Create Party'
-      expect(current_path).to eq(dashboard_path(@user1))
-
+      expect(current_path).to eq(dashboard_path)
     end
   end
 end
