@@ -1,5 +1,6 @@
-class MovieService
+# frozen_string_literal: true
 
+class MovieService
   def self.get_movie(id)
     JSON.parse(conn.get("movie/#{id}").body, symbolize_names: true)
   end

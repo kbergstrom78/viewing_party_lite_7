@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MovieFacade do
@@ -7,7 +9,7 @@ RSpec.describe MovieFacade do
 
       expect(movie).to be_a Movie
       expect(movie.title).to eq('The Godfather')
-      expect(movie.vote_average).to eq(8.709)
+      expect(movie.vote_average).to eq(8.71)
       expect(movie.runtime).to eq('2h 55min')
       expect(movie.overview).to eq('Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.')
     end
@@ -21,7 +23,7 @@ RSpec.describe MovieFacade do
       search = MovieFacade.keyword('The Godfather')
       expect(search.first).to be_a Movie
       expect(search.first.title).to eq('The Godfather')
-      expect(search.first.vote_average).to eq(8.709)
+      expect(search.first.vote_average).to eq(8.71)
     end
 
     it 'creates a list of cast members for a movie', :vcr do

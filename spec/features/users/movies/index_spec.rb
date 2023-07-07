@@ -1,24 +1,26 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Movie Results Page' do
   describe 'as a user when I visit the movie results page' do
     before :each do
       @user1 = User.create!(name: 'Danny', email: 'danny@email.com')
-      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com')  
+      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com')
       visit user_movie_index_path(@user1.id)
     end
 
     it 'I see a list of 20 movies that match my search query', :vcr do
-      within '#movie-1' do  
+      within '#movie-1' do
         expect(page).to have_content('The Godfather')
       end
 
       within '#movie-20' do
-        expect(page).to have_content("Seven Samurai")
+        expect(page).to have_content('Seven Samurai')
       end
 
       within '#movie-15' do
-        expect(page).to have_content("Forrest Gump")
+        expect(page).to have_content('The Good, the Bad and the Ugly')
       end
     end
 
@@ -26,7 +28,7 @@ RSpec.describe 'Movie Results Page' do
       within '#movie-1' do
         expect(page).to have_content(8.7)
       end
-      
+
       within '#movie-20' do
         expect(page).to have_content(8.5)
       end
@@ -46,7 +48,7 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-15' do
-        expect(page).to have_link('Forrest Gump')
+        expect(page).to have_link('The Good, the Bad and the Ugly')
       end
     end
   end

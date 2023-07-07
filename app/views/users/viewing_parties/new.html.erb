@@ -1,3 +1,34 @@
 <h1>Viewing Party</h1>
 <br>
-<h2>New Viewing Party Page</h2>
+<h2>Create a Movie Party</h2>
+<br>
+<h3>Movie Title: <%= @movie.title %></h3>
+
+<div id='party-details'>
+  <%= form_with url: dashboard_path, method: :post, local: true do |form| %>
+    <%= form.label :duration, 'Duration of Party:' %>
+    <%= form.text_field :duration %>
+    <br>
+    <%= form.label :date, 'Date:' %>
+    <%= form.text_field :date %>
+    <br>
+    <%= form.label :time, 'Start Time:' %>
+    <%= form.text_field :time %>
+    <br>
+
+    <div id='party-friends'>
+      <h3>Invite Friends to Party</h3>
+      <% @users.each do |user| %>
+        <div>
+          <%= form.check_box :user_ids, { multiple: true }, user.id, nil %>
+          <%= form.label :user_ids, user.email %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form.submit 'Create Party' %>
+  <% end %>
+</div>
+
+
+
