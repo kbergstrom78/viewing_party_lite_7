@@ -20,7 +20,7 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-15' do
-        expect(page).to have_content('Forrest Gump')
+        expect(page).to have_content('The Good, the Bad and the Ugly')
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-15' do
-        expect(page).to have_link('Forrest Gump')
+        expect(page).to have_link('The Good, the Bad and the Ugly')
       end
     end
   end
