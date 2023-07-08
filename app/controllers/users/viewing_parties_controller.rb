@@ -9,7 +9,21 @@ module Users
       @users = User.all
     end
 
-    def create;
+    def create
+      @new_party = ViewingParty.new(party_params)
+      @user = User.find(params[:host_id])
+      if @new_party.save
+        redirect_to user_path(@user.id)
+      else
+        flash[:error] = 'Please fill out all fields'
+        redirect_to new_user_movie_viewing_party_path(user_id: params[:user_id], movie_id: party_params[:movie_id])
+      end
+    end
+
+    private
+
+    def party_params
+      params.permit(:duration, :party_date, :party_time, :movie_id, :host_id)
     end
   end
 end

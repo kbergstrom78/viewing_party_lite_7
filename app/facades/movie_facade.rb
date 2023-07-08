@@ -33,4 +33,10 @@ class MovieFacade
     end
     review_data
   end
+
+  def self.images(id)
+    MovieService.get_images(id)[:backdrops].map do |image|
+      Movie.new(image)
+    end
+  end
 end
