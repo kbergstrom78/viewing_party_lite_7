@@ -35,5 +35,10 @@ RSpec.describe MovieFacade do
       reviews = MovieFacade.reviews(238)
       expect(reviews).to be_an Array
     end
+
+    it 'creates an image for a movie', :vcr do
+      movie_images = MovieFacade.images(238)
+      expect(movie_images.first).to be_a Movie
+    end
   end
 end
