@@ -51,15 +51,15 @@ RSpec.describe 'User Dashboard', type: :feature do
       UserViewingParty.delete_all
       ViewingParty.delete_all
       User.delete_all
-  
+
       json_response = File.read('spec/fixtures/movie.json')
       stub_request(:get, "https://api.themoviedb.org/3/movie/238?api_key=#{ENV['TMDB_API_KEY']}")
         .to_return(status: 200, body: json_response, headers: {})
-  
+
       json_response_2 = File.read('spec/fixtures/movie2.json')
       stub_request(:get, "https://api.themoviedb.org/3/movie/278?api_key=#{ENV['TMDB_API_KEY']}")
         .to_return(status: 200, body: json_response_2, headers: {})
-  
+
       @user1 = User.create!(name: 'Bob', email: 'bobbEE@aol.com')
       @user2 = User.create!(name: 'Sally', email: 'SeaShellZ@aol.com')
       @user3 = User.create!(name: 'Rizzo', email: 'RizzNizz@ghostmail.com')
@@ -72,14 +72,13 @@ RSpec.describe 'User Dashboard', type: :feature do
       @viewing_party_user_1 = UserViewingParty.create!(user_id: @user1.id, viewing_party_id: @viewing_party_1.id)
       @viewing_party_user_2 = UserViewingParty.create!(user_id: @user1.id, viewing_party_id: @viewing_party_2.id)
       @viewing_party_user_3 = UserViewingParty.create!(user_id: @user2.id, viewing_party_id: @viewing_party_1.id)
-     
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       visit user_path(@user1.id)
     end
-    
+
     it 'displays viewing parties that the user is hosting', :vcr do
       within '#viewing-parties' do
-       
         expect(page).to have_link('The Godfather')
         expect(page).to have_link('Shawshank Redemption')
       end
@@ -87,7 +86,6 @@ RSpec.describe 'User Dashboard', type: :feature do
 
     it 'displays viewing party details', :vcr do
       within '#viewing-parties' do
-
         expect(page).to have_content(@viewing_party_1.duration)
         expect(page).to have_content(@viewing_party_1.party_date.strftime('%B %d, %Y'))
         expect(page).to have_content('05:00PM')
@@ -96,11 +94,10 @@ RSpec.describe 'User Dashboard', type: :feature do
     end
 
     it 'displays attendees for each viewing party', :vcr do
-      
       within "#attendees-#{@viewing_party_1.movie_id}" do
-        expect(page).to have_content("#{@user1.name}")
-        expect(page).to have_content("#{@user2.name}")
-        expect(page).to_not have_content("#{@user3.name}")
+        expect(page).to have_content(@user1.name.to_s)
+        expect(page).to have_content(@user2.name.to_s)
+        expect(page).to_not have_content(@user3.name.to_s)
       end
     end
   end
