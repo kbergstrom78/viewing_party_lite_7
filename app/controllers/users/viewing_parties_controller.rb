@@ -14,6 +14,9 @@ module Users
       @user = User.find(params[:host_id])
       if @new_party.save
         redirect_to user_path(@user.id)
+        params[:user_ids].each do |user_id|
+          UserViewingParty.create(user_id: user_id, viewing_party_id: @new_party.id)
+        end
       else
         flash[:error] = 'Please fill out all fields'
         redirect_to new_user_movie_viewing_party_path(user_id: params[:user_id], movie_id: party_params[:movie_id])
