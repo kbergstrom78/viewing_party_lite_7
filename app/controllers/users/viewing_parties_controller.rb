@@ -2,7 +2,6 @@
 
 module Users
   class ViewingPartiesController < ApplicationController
-
     def new
       @user = User.find(params[:user_id])
       @movie = MovieFacade.get_movie(params[:movie_id])
@@ -15,7 +14,7 @@ module Users
       if @new_party.save
         redirect_to user_path(@user.id)
         params[:user_ids].each do |user_id|
-          UserViewingParty.create(user_id: user_id, viewing_party_id: @new_party.id)
+          UserViewingParty.create(user_id:, viewing_party_id: @new_party.id)
         end
       else
         flash[:error] = 'Please fill out all fields'

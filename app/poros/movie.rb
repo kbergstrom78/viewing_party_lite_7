@@ -10,7 +10,8 @@ class Movie
               :poster_path,
               :cast,
               :review
-              # :image
+
+  # :image
 
   def initialize(response)
     @title = response[:title]
