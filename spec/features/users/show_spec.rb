@@ -84,5 +84,24 @@ RSpec.describe 'User Dashboard', type: :feature do
         expect(page).to have_link('Shawshank Redemption')
       end
     end
+
+    it 'displays viewing party details', :vcr do
+      within '#viewing-parties' do
+
+        expect(page).to have_content(@viewing_party_1.duration)
+        expect(page).to have_content(@viewing_party_1.party_date.strftime('%B %d, %Y'))
+        expect(page).to have_content('05:00PM')
+        expect(page).to have_content('Bob')
+      end
+    end
+
+    it 'displays attendees for each viewing party', :vcr do
+      
+      within "#attendees-#{@viewing_party_1.movie_id}" do
+        expect(page).to have_content("#{@user1.name}")
+        expect(page).to have_content("#{@user2.name}")
+        expect(page).to_not have_content("#{@user3.name}")
+      end
+    end
   end
 end
