@@ -9,8 +9,8 @@ class Movie
               :vote_average,
               :poster_path,
               :cast,
-              :review, 
-              :image 
+              :review,
+              :image
 
   def initialize(response)
     @title = response[:title]
@@ -19,7 +19,7 @@ class Movie
     @genre = response[:genres]
     @runtime = format_runtime(response[:runtime])
     @vote_average = response[:vote_average]
-    @poster_path = response[poster_path:]
+    @poster_path = response[:poster_path]
     @image = response[:image]
   end
 
