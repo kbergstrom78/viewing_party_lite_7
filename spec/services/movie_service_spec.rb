@@ -49,5 +49,14 @@ RSpec.describe MovieService do
       expect(reviews[:results]).to be_an Array
       expect(reviews[:results].first[:author]).to be_a String
     end
+
+    it 'can get images for a movie', :vcr do
+      images = MovieService.get_images(238)
+
+      expect(images).to be_a Hash
+      expect(images).to have_key :backdrops
+      expect(images[:backdrops]).to be_an Array
+      expect(images[:backdrops].first[:file_path]).to be_a String
+    end
   end
 end

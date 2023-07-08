@@ -35,5 +35,10 @@ RSpec.describe MovieFacade do
       reviews = MovieFacade.reviews(238)
       expect(reviews).to be_an Array
     end
+
+    it 'returns a valid image URL for a movie', :vcr do
+      movie_image = MovieFacade.images(238)
+      expect(movie_image).to satisfy { |image| URI::DEFAULT_PARSER.regexp[:ABS_URI].match?(image) }
+    end
   end
 end

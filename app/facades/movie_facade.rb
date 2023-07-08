@@ -33,4 +33,13 @@ class MovieFacade
     end
     review_data
   end
+
+  def self.images(id)
+    image_data = MovieService.get_images(id)[:posters].first
+      if image_data
+        'https://image.tmdb.org/t/p/original' + image_data[:file_path]
+      else
+        nil
+      end
+  end
 end

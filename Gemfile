@@ -56,7 +56,6 @@ gem 'figaro'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'faker'
   gem 'net-http'
   gem 'pry'
   gem 'rspec-rails'
@@ -82,4 +81,6 @@ group :test do
   gem 'simplecov'
   gem 'vcr'
   gem 'webmock'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'User Registration' do
   describe 'as a user when I visit the registration page' do
-    it 'display a form to register' do
+    it 'displays a form to register' do
       visit '/register'
 
       within '#registration-form' do
@@ -25,8 +25,8 @@ RSpec.describe 'User Registration' do
 
         click_button 'Save'
       end
-
-      expect(current_path).to eq(dashboard_path)
+      @user = User.find_by(email: 'gohomenow@hotmail.com')
+      expect(current_path).to eq(user_path(@user.id))
     end
 
     it 'will not create a user with incomplete information' do
@@ -38,7 +38,8 @@ RSpec.describe 'User Registration' do
 
         click_button 'Save'
       end
-      expect(current_path).to eq(dashboard_path)
+      @user = User.find_by(email: 'gohomenow@hotmail.com')
+      expect(current_path).to eq(user_path(@user.id))
 
       visit '/register'
 
