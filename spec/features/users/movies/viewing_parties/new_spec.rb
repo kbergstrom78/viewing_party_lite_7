@@ -24,7 +24,7 @@ RSpec.describe 'Viewing Party New Page' do
     
     it 'can fill out form and create party', :vcr do
       user_locator = "user_ids_#{@user2.id}" 
-      
+     
       within '#party-details' do
         fill_in :duration, with: 175
         fill_in :party_date, with: '2021-07-04'
@@ -34,8 +34,9 @@ RSpec.describe 'Viewing Party New Page' do
         check(user_locator)
         click_button 'Create Party'
       end
-    
+     
       expect(current_path).to eq(user_path(@user1.id))
+    
     end
   end
 end
