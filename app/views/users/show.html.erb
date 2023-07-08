@@ -6,50 +6,24 @@
   <%= button_to "Discover Movies", "/users/#{current_user.id}/discover", method: :get %>
 </div>
 <br>
-<div id="viewing-parties">
-  <h3>My Viewing Parties</h3>
-  <% @hosted_parties.each do |party| %>
-    <div>
-      <% movie = MovieFacade.get_movie(party.movie_id) %>
-      <% if movie.image %>
-        <%= image_tag(movie.image) %>
-      <% else %>
-        <p>No image available</p>
-      <% end %>
-      <%= link_to movie.title, user_movie_path(party.movie_id) %>
-      <p>Date: <%= "#{party.party_date}" %></p>
-      <p>Time: <%= "#{party.party_time}" %></p>
-      <p>Hosted by You</p>
-      <p>Invited:
-        <% party.users.each do |user| %>
-          <%= user.name unless user == @user %>
-        <% end %>
-      </p>
+<div id='viewing-parties'>
+  <h3> My Viewing Parties</h3>
+  <div class="row-1">
+    <div class="column-2">
+      <% @parties_info.each do |party_info| %>
+        <p><img src=<%= "#{party_info[:image]}"%>></p>
+        <p><%= link_to "#{party_info[:title]}", "/users/#{@user.id}/movies/#{party_info[:movie_id]}" %></p>
+        <p>Date: <%= party_info[:date].strftime("%B %d, %Y") %></p>
+        <p>Time: <%= party_info[:time].strftime("%I:%M%p") %></p>
+        <p>Duration: <%= party_info[:duration] %>mins</p>
+        <p>Host: </p>
+          <b> &emsp; <%= party_info[:host] %></b>
+          <div id="attendees-<%= party_info[:movie_id] %>">
+            <p>Attendees: <% party_info[:attendees].each do |attendee| %></p>
+            <p> &emsp; <%= attendee.name %></p>
+            <% end %> 
+          </div>
     </div>
-  <% end %>
-
-  <h2>Parties You're Invited To</h2>
-  <% @invited_parties.each do |party| %>
-    <div>
-      <% movie = MovieFacade.get_movie(party.movie_id) %>
-      <% if movie.image %>
-        <%= image_tag(movie.image) %>
-      <% else %>
-        <p>No image available</p>
       <% end %>
-      <%= link_to movie.title, user_movie_path(party.movie_id) %>
-      <p>Date: <%= "#{party.party_date}" %></p>
-      <p>Time: <%= "#{party.party_time}" %></p>
-      <p>Hosted by <%= User.find(party.host_id).name %></p>
-      <p>Invited:
-        <% party.users.each do |user| %>
-          <% if user == @user %>
-            <strong><%= user.name %></strong>
-          <% else %>
-            <%= user.name %>
-          <% end %>
-        <% end %>
-      </p>
-    </div>
-  <% end %>
+  </div>
 </div>
