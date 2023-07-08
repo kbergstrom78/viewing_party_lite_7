@@ -6,10 +6,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    require 'pry'; binding.pry
     @user = current_user
-    @hosted_parties = ViewingParty.where(host_id: @user.id)
-    @invited_parties = @user.viewing_parties
+    # require 'pry'; binding.pry
+    @viewing_parties = @user.viewing_parties
+    @parties_info = []
+    @viewing_parties.each do |party|
+      @parties_info << party.collect_display_data
+    end
   end
 
   def create
