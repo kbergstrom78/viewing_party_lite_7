@@ -8,7 +8,7 @@ RSpec.describe 'User Dashboard', type: :feature do
       @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com')
       @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
-      visit dashboard_path
+      visit user_path(@user1.id)
     end
 
     it 'when I visit the user dashboard I see a header with user name' do
@@ -42,6 +42,28 @@ RSpec.describe 'User Dashboard', type: :feature do
       expect(page).to have_link('Back to Landing Page')
       expect(page).to have_content('Viewing Party')
       expect(page).to have_content('Discover Movies')
+    end
+  end
+
+  describe 'User dashboard with Viewing Parties' do
+    before :each do
+      @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com')
+      @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com')
+      @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+      visit user_path(@user1.id)
+    end
+
+    it 'displays viewing parties that the user is invited to', :vcr do
+      within '#viewing-parties' do
+       
+        expect(page).to have_content("Godfather")
+        expect(page).to have_content('Date')
+        expect(page).to have_content('Time')
+        expect(page).to have_content('Host')
+        expect(page).to have_content('Attendees')
+        expect(image).to be_valid
+      end
     end
   end
 end
