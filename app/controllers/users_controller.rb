@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    # require 'pry'; binding.pry
     @viewing_parties = @user.viewing_parties
     @parties_info = []
     @viewing_parties.each do |party|
