@@ -6,9 +6,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    require 'pry'; binding.pry
     @user = current_user
     @hosted_parties = ViewingParty.where(host_id: @user.id)
-    # @invited_parties = @user.viewing_parties
+    @invited_parties = @user.viewing_parties
   end
 
   def create
