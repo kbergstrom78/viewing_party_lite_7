@@ -7,6 +7,7 @@ RSpec.describe 'User Dashboard', type: :feature do
     before :each do
       @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com')
       @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com')
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       visit user_path(@user1.id)
     end
@@ -50,19 +51,21 @@ RSpec.describe 'User Dashboard', type: :feature do
       @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com')
       @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com')
       @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
+      @viewing_party = ViewingParty.create!(duration: 175, party_date: '2020-08-27', party_time: '19:00', movie_id: 238, host_id: @user1.id)
+      @viewing_party.user_viewing_parties.create!(user_id: @user2.id)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       visit user_path(@user1.id)
     end
 
-    it 'displays viewing parties that the user is invited to', :vcr do
+    it 'displays viewing parties that the user is hosting', :vcr do
       within '#viewing-parties' do
-       
-        expect(page).to have_content("Godfather")
+      save_and_open_page
+        expect(page).to have_content('Godfather')
         expect(page).to have_content('Date')
         expect(page).to have_content('Time')
         expect(page).to have_content('Host')
-        expect(page).to have_content('Attendees')
-        expect(image).to be_valid
+        expect(page).to have_content('Invited')
+        expect(page).to have_css('img', visible: true)
       end
     end
   end
