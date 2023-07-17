@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe 'User Dashboard', type: :feature do
   describe 'as a user when I visit the show page' do
     before :each do
-      @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com')
-      @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com')
+      @user1 = User.create!(name: 'Danny', email: 'dannyzuko@grease.com', password: 'test1')
+      @user2 = User.create!(name: 'Sandy', email: 'sandy@grease.com', password: 'test2')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       visit user_path(@user1.id)
@@ -60,9 +60,9 @@ RSpec.describe 'User Dashboard', type: :feature do
       stub_request(:get, "https://api.themoviedb.org/3/movie/278?api_key=#{ENV['TMDB_API_KEY']}")
         .to_return(status: 200, body: json_response_2, headers: {})
 
-      @user1 = User.create!(name: 'Bob', email: 'bobbEE@aol.com')
-      @user2 = User.create!(name: 'Sally', email: 'SeaShellZ@aol.com')
-      @user3 = User.create!(name: 'Rizzo', email: 'RizzNizz@ghostmail.com')
+      @user1 = User.create!(name: 'Bob', email: 'bobbEE@aol.com', password: 'test1')
+      @user2 = User.create!(name: 'Sally', email: 'SeaShellZ@aol.com', password: 'test2')
+      @user3 = User.create!(name: 'Rizzo', email: 'RizzNizz@ghostmail.com', password: 'test3')
       @movie_detail = Movie.new(JSON.parse(json_response, symbolize_names: true))
       @movie_detail_2 = Movie.new(JSON.parse(json_response_2, symbolize_names: true))
       @viewing_party_1 = ViewingParty.create!(duration: '180', host_id: @user1.id, movie_id: @movie_detail.id,

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Movie Show Page' do
   describe 'as a user when I visit the movie show page' do
     before :each do
-      @user1 = User.create!(name: 'Danny', email: 'flyfish213@aol.com')
+      @user1 = User.create!(name: 'Danny', email: 'flyfish213@aol.com', password: 'test1')
       visit "/users/#{@user1.id}/movie/238"
     end
 
