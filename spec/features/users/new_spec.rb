@@ -42,15 +42,13 @@ RSpec.describe 'User Registration' do
 
       within '#registration-form' do
         fill_in 'Name', with: 'Bob'
-        fill_in 'Email', with: 'gohomenow@hotmail.com'
+        fill_in 'Email', with: ''
         fill_in('Password', with: 'test', match: :prefer_exact)
         fill_in 'Password Confirmation', with: 'test'
         click_button 'Save'
       end
 
-      @user = User.find_by(email: 'gohomenow@hotmail.com')
-      expect(current_path).to eq(user_path(@user.id))
-
+      expect(page).to have_content('Try again! All fields must be complete and email unique.')
       visit '/register'
 
       within '#registration-form' do
