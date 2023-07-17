@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'Viewing Party New Page' do
   describe 'as a user when I visit the new viewing party page' do
     before :each do
-      @user1 = User.create!(name: 'Danny', email: 'hahaHA@yahoo.com')
-      @user2 = User.create!(name: 'Sandy', email: 'sadnyBottomZ@aol.com')
-      @user3 = User.create!(name: 'Rizzo', email: 'RizzNIzz@hotmail.com')
+      @user1 = User.create!(name: 'Danny', email: 'hahaHA@yahoo.com', password: 'test1')
+      @user2 = User.create!(name: 'Sandy', email: 'sadnyBottomZ@aol.com', password: 'test2')
+      @user3 = User.create!(name: 'Rizzo', email: 'RizzNIzz@hotmail.com', password: 'test3')
       @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
       visit new_user_movie_viewing_party_path(@user1, @movie.id)
     end

@@ -1,6 +1,7 @@
 <%= link_to 'Home', root_path %>
 <h1>Viewing Party</h1>
 <%= link_to 'Create a New User', new_user_path, class: 'button' %>
+<%= link_to 'Log In', login_path %>
 <h2>Existing Users:</h2>
 <ul>
   <% @users.each do |user| %>

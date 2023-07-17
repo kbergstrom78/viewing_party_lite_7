@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Movie Results Page' do
   describe 'as a user when I visit the movie results page' do
     before :each do
-      @user1 = User.create!(name: 'Danny', email: 'danny@email.com')
-      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com')
+      @user1 = User.create!(name: 'Danny', email: 'danny@email.com', password: 'test1')
+      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com', password: 'test2')
       visit user_movie_index_path(@user1.id)
     end
 
@@ -16,11 +16,11 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_content('Seven Samurai')
+        expect(page).to have_content('Gabriel\'s Inferno')
       end
 
       within '#movie-15' do
-        expect(page).to have_content('The Good, the Bad and the Ugly')
+        expect(page).to have_content('Lord of the Rings: The Return of the King')
       end
     end
 
@@ -44,11 +44,11 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_link('Seven Samurai')
+        expect(page).to have_link('Gabriel\'s Inferno')
       end
 
       within '#movie-15' do
-        expect(page).to have_link('The Good, the Bad and the Ugly')
+        expect(page).to have_link('Lord of the Rings: The Return of the King')
       end
     end
   end

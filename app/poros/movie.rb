@@ -21,7 +21,6 @@ class Movie
     @runtime = format_runtime(response[:runtime])
     @vote_average = response[:vote_average]
     @poster_path = response[:poster_path]
-    # @image = response[:image]
   end
 
   def format_runtime(time)
