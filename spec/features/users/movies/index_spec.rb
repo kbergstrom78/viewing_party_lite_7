@@ -16,11 +16,11 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_content('Seven Samurai')
+        expect(page).to have_content('Gabriel\'s Inferno')
       end
 
       within '#movie-15' do
-        expect(page).to have_content('The Good, the Bad and the Ugly')
+        expect(page).to have_content('Lord of the Rings: The Return of the King')
       end
     end
 
@@ -44,11 +44,11 @@ RSpec.describe 'Movie Results Page' do
       end
 
       within '#movie-20' do
-        expect(page).to have_link('Seven Samurai')
+        expect(page).to have_link('Gabriel\'s Inferno')
       end
 
       within '#movie-15' do
-        expect(page).to have_link('The Good, the Bad and the Ugly')
+        expect(page).to have_link('Lord of the Rings: The Return of the King')
       end
     end
   end
