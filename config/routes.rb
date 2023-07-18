@@ -2,12 +2,12 @@
 
 Rails.application.routes.draw do
   root 'landing#index'
+  get 'login', to: 'users#login_form'
+  post 'login', to: 'users#login_user'
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
   post '/dashboard', to: 'users/viewing_parties#create'
-  get '/login', to: 'users#login_form'
-  post '/login', to: 'users#login'
 
   resources :users do
     resources :discover, only: [:index], controller: 'users/discover'
