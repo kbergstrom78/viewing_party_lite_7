@@ -15,13 +15,13 @@ RSpec.describe 'As a registered user', type: :feature do
     click_button 'Log In'
 
     visit root_path
-
+    save_and_open_page
     expect(page).to have_content('Viewing Party')
     expect(page).to have_link('Log Out')
     expect(page).to have_content('Existing Users')
-    expect(page).to have_link(@user1.name)
-    expect(page).to have_link(@user2.name)
-    expect(page).to have_link(@user3.name)
+    expect(page).to have_content(@user1.email)
+    expect(page).to have_content(@user2.email)
+    expect(page).to have_content(@user3.email)
   end
 
   it 'can log in' do
@@ -74,5 +74,13 @@ RSpec.describe 'As a registered user', type: :feature do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_link('Log In')
+  end
+
+  describe 'as a visitor, when I visit the landing page' do
+    it 'does not show existing users' do
+      visit root_path
+
+      expect(page).not_to have_content('Existing Users')
+    end
   end
 end
