@@ -9,4 +9,6 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
 
   has_secure_password
+
+  enum role: %w(default user)
 end
