@@ -75,4 +75,12 @@ RSpec.describe 'As a registered user', type: :feature do
     expect(current_path).to eq(root_path)
     expect(page).to have_link('Log In')
   end
+
+  describe 'as a visitor, when I visit the landing page' do
+    it 'does not show existing users' do
+      visit root_path
+
+      expect(page).not_to have_content('Existing Users')
+    end
+  end
 end
