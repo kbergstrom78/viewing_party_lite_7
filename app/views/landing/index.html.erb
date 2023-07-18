@@ -6,7 +6,7 @@
   <h2>Existing Users:</h2>
   <ul>
     <% @users.each do |user| %>
-      <li><%= link_to user.name, user_path(user.id) %></li>
+      <li><%= user.email %></li> <!-- Here we replaced the link to show page with just the email address -->
     <% end %>
   </ul>
 <% else %>
