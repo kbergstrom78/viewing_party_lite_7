@@ -1,0 +1,9 @@
+<%= form_with(url: login_path, local: true) do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email, name: 'session[email]' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, name: 'session[password]' %>
+
+  <%= f.submit 'Log In' %>
+<% end %>
