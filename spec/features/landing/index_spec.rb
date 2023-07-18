@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe 'As a registered user', type: :feature do
@@ -10,9 +8,16 @@ RSpec.describe 'As a registered user', type: :feature do
   end
 
   it 'has a landing page' do
+    visit login_path
+
+    fill_in 'Email', with: @user1.email
+    fill_in 'Password', with: @user1.password
+    click_button 'Log In'
+
     visit root_path
+
     expect(page).to have_content('Viewing Party')
-    expect(page).to have_link('Create a New User')
+    expect(page).to have_link('Log Out')
     expect(page).to have_content('Existing Users')
     expect(page).to have_link(@user1.name)
     expect(page).to have_link(@user2.name)
@@ -21,13 +26,13 @@ RSpec.describe 'As a registered user', type: :feature do
 
   it 'can log in' do
     visit root_path
-    expect(page).to have_link('Log In')
 
     click_link 'Log In'
+
     expect(current_path).to eq(login_path)
 
-    fill_in :email, with: @user1.email
-    fill_in :password, with: @user1.password
+    fill_in 'Email', with: @user1.email
+    fill_in 'Password', with: @user1.password
     click_button 'Log In'
 
     expect(page).to have_content('Welcome, Danny!')
@@ -38,15 +43,36 @@ RSpec.describe 'As a registered user', type: :feature do
     visit root_path
     expect(page).to have_link('Log In')
 
-    click_link "Log In"
+    click_link 'Log In'
     expect(current_path).to eq(login_path)
 
-    fill_in :email, with: @user2.email
-    fill_in :password, with: 'wrong password'
+    fill_in 'Email', with: @user2.email
+    fill_in 'Password', with: 'wrong password'
     click_button 'Log In'
 
     expect(current_path).to eq(login_path)
     expect(page).to_not have_content('Welcome, Sandy!')
     expect(page).to have_content('Invalid Credentials. Please try again.')
+  end
+
+  it 'shows appropriate links when logged in' do
+    user = User.create!(name: 'Bilbo', email: 'hobbit1@lotr.com', password: '123abc')
+    visit login_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log In'
+
+    visit root_path
+
+    expect(page).not_to have_link('Log In')
+    expect(page).not_to have_link('Create an Account')
+
+    expect(page).to have_link('Log Out')
+
+    click_link 'Log Out'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_link('Log In')
   end
 end
