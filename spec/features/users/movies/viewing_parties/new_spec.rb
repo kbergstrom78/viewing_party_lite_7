@@ -9,6 +9,12 @@ RSpec.describe 'Viewing Party New Page' do
       @user2 = User.create!(name: 'Sandy', email: 'sadnyBottomZ@aol.com', password: 'test2')
       @user3 = User.create!(name: 'Rizzo', email: 'RizzNIzz@hotmail.com', password: 'test3')
       @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
+
+      visit login_path
+      fill_in :email, with: @user1.email
+      fill_in :password, with: @user1.password
+      click_button 'Log In'
+
       visit new_user_movie_viewing_party_path(@user1, @movie.id)
     end
 
