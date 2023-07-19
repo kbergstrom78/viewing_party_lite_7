@@ -3,13 +3,21 @@
 <% if current_user %>
   <%= link_to "Log Out", logout_path, method: :delete %>
 
+  <h2>Welcome, <%= current_user.email %>!</h2>
+  <p>You are logged in and can access your dashboard.</p>
+  <%= link_to "Go to Dashboard", dashboard_path %>
+
   <h2>Existing Users:</h2>
   <ul>
     <% @users.each do |user| %>
-      <li><%= user.email %></li> <!-- Here we replaced the link to show page with just the email address -->
+      <li><%= user.email %></li>
     <% end %>
   </ul>
 <% else %>
   <%= link_to "Log In", login_path %>
   <%= link_to "Create an Account", new_user_path %>
+  <p>You must be logged in or registered to access your dashboard.</p>
+  <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
 <% end %>

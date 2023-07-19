@@ -37,8 +37,8 @@ class UsersController < ApplicationController
 
   def require_login
     unless current_user
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
+      flash[:error] = "You must be logged in to view this page."
+      redirect_to root_path
     end
   end
 end
