@@ -15,7 +15,7 @@ RSpec.describe 'As a registered user', type: :feature do
     click_button 'Log In'
 
     visit root_path
-    save_and_open_page
+
     expect(page).to have_content('Viewing Party')
     expect(page).to have_link('Log Out')
     expect(page).to have_content('Existing Users')
@@ -81,6 +81,21 @@ RSpec.describe 'As a registered user', type: :feature do
       visit root_path
 
       expect(page).not_to have_content('Existing Users')
+    end
+
+    it 'does not allow visitor to visit user dashboard' do
+      user = User.create!(name: 'Bilbo', email: 'mrhobbit@lotr.com', password: '123abc')
+      visit root_path
+      expect(page).not_to have_link('Dashboard')
+    
+      visit user_path(user)
+
+      expect(page).not_to have_link('Dashboard')
+
+      visit '/users/1'
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('You must be logged in to view this page.')
     end
   end
 end
