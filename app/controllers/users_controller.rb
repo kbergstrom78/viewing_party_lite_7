@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
   def new
     @user = User.new
   end
@@ -15,9 +16,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @new_user = User.create(user_params)
+    user = user_params
+    user[:email] = user[:email].downcase
+    @new_user = User.new(user)
     if @new_user.save
       session[:user_id] = @new_user.id
+      flash[:success] = "Welcome, #{user_params[:name]}!"
       redirect_to user_path(@new_user.id)
     else
       flash.notice = 'Try again! All fields must be complete and email unique.'
@@ -28,6 +32,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email)
+    params.permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def require_login
+    unless current_user
+      flash[:error] = "You must be logged in to view this page."
+      redirect_to root_path
+    end
   end
 end

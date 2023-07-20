@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'Movie Results Page' do
   describe 'as a user when I visit the movie results page' do
     before :each do
-      @user1 = User.create!(name: 'Danny', email: 'danny@email.com')
-      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com')
-      visit user_movie_index_path(@user1.id)
+      @user1 = User.create!(name: 'Danny', email: 'danny@email.com', password: 'test1')
+      @user2 = User.create!(name: 'Sandy', email: 'sandy@email.com', password: 'test2')
+      visit movies_path
     end
 
     it 'I see a list of 20 movies that match my search query', :vcr do

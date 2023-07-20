@@ -75,7 +75,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('DONT_SHARE_MY_TMDB_KEY') { ENV['TMDB_API_KEY'] }
   config.default_cassette_options = {
     serialize_with: :json,
-    re_record_interval: 7.days
+    re_record_interval: nil
   }
   config.configure_rspec_metadata!
 end

@@ -6,4 +6,18 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+  validates :password_digest, presence: true
+
+  has_secure_password
+
+  enum role: %w(default user)
+
+  def self.authenticate(email,password)
+    user = User.find_by(email: email.downcase)
+    if user && user.authenticate(password)
+      user
+    else
+      nil
+    end
+  end
 end
