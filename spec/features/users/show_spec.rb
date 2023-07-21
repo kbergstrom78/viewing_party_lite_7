@@ -38,8 +38,8 @@ RSpec.describe 'User Dashboard', type: :feature do
         click_button('Discover Movies')
       end
 
-      expect(current_path).to eq(user_discover_index_path(@user1.id))
-      expect(current_path).to_not eq(user_discover_index_path(@user2.id))
+      expect(current_path).to eq(discover_index_path)
+
       expect(page).to have_link('Back to Landing Page')
       expect(page).to have_content('Viewing Party')
       expect(page).to have_content('Discover Movies')

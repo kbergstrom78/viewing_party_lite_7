@@ -7,7 +7,7 @@ RSpec.describe 'Discover Movies Page' do
     before :each do
       @user1 = User.create!(name: 'Danny', email: 'callmeDan@yaho.com', password: 'test1')
       @user2 = User.create!(name: 'Sandy', email: 'itsSandyifyounasty@hotmail.com', password: 'test2')
-      visit user_discover_index_path(@user1.id)
+      visit discover_index_path
     end
 
     it 'I see a button to discover top rated movies', :vcr do
@@ -17,7 +17,7 @@ RSpec.describe 'Discover Movies Page' do
 
         click_button 'Discover Top Rated Movies'
       end
-      expect(current_path).to eq(user_movie_index_path(@user1.id))
+      expect(current_path).to eq(movies_path)
       expect(page).to have_content('Movies Results Page')
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Discover Movies Page' do
         click_button 'Search'
       end
 
-      expect(current_path).to eq(user_movie_index_path(@user1.id))
+      expect(current_path).to eq(movies_path)
 
       within '#movie-1' do
         expect(page).to have_link('The Godfather')
