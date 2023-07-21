@@ -2,7 +2,7 @@
 
 class MovieFacade
   def self.get_movie(id)
-    movie_data = MovieService.get_movie(id)
+    movie_data = MovieService.get_movie(id.to_i)
     Movie.new(movie_data)
   end
 

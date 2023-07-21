@@ -4,7 +4,7 @@
 <br>
 <% if user_logged_in? %>
   <div id='create-party'>
-    <%= link_to 'Create Viewing Party', new_viewing_party_path(movie_id: @movie.id), method: :get %>
+    <%= link_to 'Create Viewing Party', new_movie_viewing_party_path(@movie) %>
   </div>
 <% end %>
 <br>
@@ -16,22 +16,25 @@
   <h3><%= @movie.title %></h3>
   <p>Vote: <%= @movie.vote_average %></p>
   <p>Runtime: <%= @movie.runtime %></p>
-    <p>Genres: <% @movie.genre.each do |g| %></p>
-      <ul>
-          <li><%= g[:name] %></li>
-      </ul>
-    <% end %>
-  <p>Summary: <%= @movie.overview %></p>
-  <p>Cast: <% @cast.each do |c| %></p>
+  <p>Genres: </p>
+  <% @movie.genre.each do |g| %>
     <ul>
-        <li><%= c %></li>
+      <li><%= g[:name] %></li>
     </ul>
-    <% end %>
+  <% end %>
+  <p>Summary: <%= @movie.overview %></p>
+  <p>Cast:</p>
+  <% @cast.each do |c| %>
+    <ul>
+      <li><%= c %></li>
+    </ul>
+  <% end %>
 </div>
 <br>
 <div id='movie-reviews'>
-  <p><h4>Reviews</h4></p>
-  <p><%= @reviews.count %> Reviews:<% @reviews.each do |review| %></p>
+  <h4>Reviews</h4>
+  <p><%= @reviews.count %> Reviews:</p>
+  <% @reviews.each do |review| %>
     <p><%= review %></p>
     <br>
   <% end %>
