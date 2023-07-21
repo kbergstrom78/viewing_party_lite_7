@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   post '/dashboard', to: 'users/viewing_parties#create'
 
   resources :users, only: %i[new create show]
-  resources :viewing_parties, only: %i[new create]
   resources :discover, only: [:index]
-  resources :movies, only: %i[index show]
+  resources :movies, only: %i[index show] do
+    resources :viewing_parties, only: %i[new create]
+  end
 end
 

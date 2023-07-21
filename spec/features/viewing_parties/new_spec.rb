@@ -8,20 +8,14 @@ RSpec.describe 'Viewing Party New Page' do
       @user1 = User.create!(name: 'Danny', email: 'hahaHA@yahoo.com', password: 'test1')
       @user2 = User.create!(name: 'Sandy', email: 'sadnyBottomZ@aol.com', password: 'test2')
       @user3 = User.create!(name: 'Rizzo', email: 'RizzNIzz@hotmail.com', password: 'test3')
-      @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
-
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
-      
-      visit login_path
-      fill_in :email, with: @user1.email
-      fill_in :password, with: @user1.password
-      click_button 'Log In'
 
-      visit new_user_movie_viewing_party_path(@user1, @movie.id)
+      @movie = Movie.new(title: 'The Godfather', id: 238, runtime: 175)
     end
 
     it 'displays the movie title, and a form for party', :vcr do
-      expect(page).to have_content(@movie.title)
+      visit new_movie_viewing_party_path(238)
+      expect(page).to have_content('The Godfather')
 
       within '#party-details' do
         expect(page).to have_content('Duration of Party')
