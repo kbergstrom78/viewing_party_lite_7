@@ -2,12 +2,14 @@
 <br>
 <h2>Movie Details Page</h2>
 <br>
-<div id='create-party'>
-  <%= link_to 'Create Viewing Party', movie_viewing_parties_path(@movie.id), method: :get %>
-</div>
+<% if user_logged_in? %>
+  <div id='create-party'>
+    <%= link_to 'Create Viewing Party', new_viewing_party_path(movie_id: @movie.id), method: :get %>
+  </div>
+<% end %>
 <br>
 <div id='discover'>
-  <%= button_to 'Back to Discover', user_discover_index_path(@user.id), method: :get %>
+  <%= button_to 'Back to Discover', discover_index_path, method: :get %>
 </div>
 <br>
 <div id='movie-details'>

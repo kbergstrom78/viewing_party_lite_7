@@ -1,16 +1,15 @@
-# frozen_string_literal: true
 class ViewingPartiesController < ApplicationController
   before_action :require_login, only: [:create]
 
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @movie = MovieFacade.get_movie(params[:movie_id])
     @users = User.all
   end
 
   def create
     @new_party = ViewingParty.new(party_params)
-    @user = User.find(params[:host_id])
+    @user = current_user
     if @new_party.save
       redirect_to user_path(@user.id)
       params[:user_ids].each do |user_id|
@@ -18,14 +17,14 @@ class ViewingPartiesController < ApplicationController
       end
     else
       flash[:error] = 'Please fill out all fields'
-      redirect_to new_user_movie_viewing_party_path(user_id: params[:user_id], movie_id: party_params[:movie_id])
+      redirect_to new_viewing_party_path(movie_id: party_params[:movie_id])
     end
   end
 
   private
 
   def party_params
-    params.permit(:duration, :party_date, :party_time, :movie_id, :host_id)
+    params.permit(:duration, :party_date, :party_time, :movie_id)
   end
 
   def require_login

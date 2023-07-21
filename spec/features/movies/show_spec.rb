@@ -6,7 +6,9 @@ RSpec.describe 'Movie Show Page' do
   describe 'as a user when I visit the movie show page' do
     before :each do
       @user1 = User.create!(name: 'Danny', email: 'flyfish213@aol.com', password: 'test1')
-      visit "/users/#{@user1.id}/movie/238"
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
+
+      visit movie_path(238)
     end
 
     it 'I see the movie title, vote average, runtime, genre and summary', :vcr do
@@ -48,7 +50,7 @@ RSpec.describe 'Movie Show Page' do
         expect(page).to have_link('Create Viewing Party')
         click_link 'Create Viewing Party'
       end
-      expect(current_path).to eq(new_user_movie_viewing_party_path(@user1, 238))
+      expect(current_path).to eq(new_viewing_party_path)
     end
 
     it 'has a button to return to the Discover Page', :vcr do
@@ -56,7 +58,7 @@ RSpec.describe 'Movie Show Page' do
         expect(page).to have_button('Back to Discover')
         click_button 'Back to Discover'
       end
-      expect(current_path).to eq(user_discover_index_path(@user1))
+      expect(current_path).to eq(discover_index_path)
     end
   end
 end
